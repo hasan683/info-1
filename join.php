@@ -14,10 +14,10 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-
-$sql=SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
-FROM Orders
-INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;
+$sql = "SELECT employe.name, employee_attendence.employee_id
+FROM employe
+INNER JOIN employee_attendence ON employe.id=employee_attendence.employee_id";
+$result = $conn->query($sql);
 
 $conn->close();
 

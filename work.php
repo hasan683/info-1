@@ -1,7 +1,5 @@
 
-
-
-  <?php
+<?php
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -14,8 +12,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$id = $_GET['id'];
-$sql = "SELECT id, in_time, out_time, date, employee_id FROM employee_attendence WHERE employee_id=$id";
+$sql = "SELECT id,work,date,employee_id FROM work";
 $result = $conn->query($sql);
 
 $conn->close();
@@ -48,11 +45,9 @@ $conn->close();
 <table>
   <tr>
     <th>id</th>
-    <th>in_time</th>
-    <th>out_time</th>
+    <th>work</th>
     <th>date</th>
     <th>employee_id</th>
-
   </tr>
 
   <?php if ($result->num_rows > 0) {
@@ -68,11 +63,12 @@ $conn->close();
   </style>
 
   <tr>
-    <td><?php echo $row["id"]?></td>
-    <td><?php echo $row["in_time"] ?></td>
-    <td><?php echo $row["out_time"] ?></td>
+  <td><?php echo $row["id"]?></td>
+    <td><?php echo $row["work"] ?></td>
     <td><?php echo $row["date"] ?></td>
     <td><?php echo $row["employee_id"] ?></td>
+    <td><a class="bg" href="edit.php?id=<?php echo $row["id"] ?>">work</a> </td>
+    <!-- <td><a href="edit.php?id=<?php echo $row["id"] ?>"></a></td> -->
   </tr>
 
   <?php   }
