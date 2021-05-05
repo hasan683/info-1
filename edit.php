@@ -15,7 +15,10 @@ if ($conn->connect_error) {
 }
 
 $id = $_GET['id'];
-$sql = "SELECT id, in_time, out_time, date, employee_id FROM employee_attendence WHERE employee_id=$id";
+
+$sql = "SELECT employe.phone,name, employee_attendence.in_time,out_time,date,employee_attendence.id
+FROM employe
+INNER JOIN employee_attendence ON employe.id=employee_attendence.employee_id  WHERE employee_id=$id";
 $result = $conn->query($sql);
 
 $conn->close();
@@ -51,7 +54,7 @@ $conn->close();
     <th>in_time</th>
     <th>out_time</th>
     <th>date</th>
-    <th>employee_id</th>
+    <th>name</th>
 
   </tr>
 
@@ -72,7 +75,7 @@ $conn->close();
     <td><?php echo $row["in_time"] ?></td>
     <td><?php echo $row["out_time"] ?></td>
     <td><?php echo $row["date"] ?></td>
-    <td><?php echo $row["employee_id"] ?></td>
+    <td><?php echo $row["name"] ?></td>
   </tr>
 
   <?php   }
