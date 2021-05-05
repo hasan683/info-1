@@ -16,6 +16,7 @@ if ($conn->connect_error) {
 
 $id = $_GET['id'];
 $sql = "SELECT id, in_time, out_time, date, employee_id FROM employee_attendence WHERE employee_id=$id";
+
 $result = $conn->query($sql);
 
 $conn->close();
